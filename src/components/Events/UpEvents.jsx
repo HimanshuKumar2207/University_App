@@ -65,7 +65,7 @@ const Events = [
 
 const UpEvents = () => {
   return (
-    <div className="mt-[70px] lg:mb-10">
+    <div className="mt-[70px] lg:mb-10 mb-10">
       {/* Section Header */}
       <div className="flex flex-col justify-center items-center">
         <p className="h-1 bg-navcolor w-[100px] my-2"></p>

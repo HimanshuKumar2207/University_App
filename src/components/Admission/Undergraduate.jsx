@@ -366,7 +366,7 @@ const UndergraduateCourses = () => {
         bannerbtn="Discover more"
       />
 
-      <div className="bg-gray-100 p-10 min-h-screen mt-24 md:mb-20">
+      <div className="bg-gray-100 p-10 min-h-screen mt-24 md:mb-20 mb-20">
         <h2 className="lg:text-4xl lg:text-left text-center text-2xl font-semibold mb-10 text-navcolor lg:ml-24">
           Undergraduate Courses
         </h2>

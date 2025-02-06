@@ -32,7 +32,7 @@ const Index = () => {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/Events" element={<Events />} />
@@ -50,6 +50,7 @@ const Index = () => {
         <Route path="/Campus/Video" element={<Video />} />
         <Route path="/Campus/CampusGallery" element={<CampusGallery />} />
         <Route path="/Campus/Hostel" element={<Hostel />} />/
+        <Route path="/" element={<Navigate to="/home" replace />} />
       </Routes>
       <Footer />
       <FixedBottom />

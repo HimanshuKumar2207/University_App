@@ -90,7 +90,7 @@ const Library = () => {
         </div>
       </div>
 
-      <div className="p-6 sm:p-8 lg:p-16">
+      <div className="p-6 sm:p-8 lg:p-16 mb-16">
         {/* Table Layout */}
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden border">

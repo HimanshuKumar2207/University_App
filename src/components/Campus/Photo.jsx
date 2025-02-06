@@ -43,9 +43,9 @@ const getCategoryImages = (category) => {
 };
 
 const Category = ({ category, images, isOpen, onToggle }) => (
-  <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+  <div className="bg-white rounded-lg shadow-lg overflow-hidden ">
     <div
-      className="flex justify-between items-center p-4 cursor-pointer bg-navcolor text-white"
+      className=" flex justify-between items-center p-4 cursor-pointer bg-navcolor text-white"
       onClick={onToggle}
       aria-expanded={isOpen}
       aria-controls={category}
@@ -96,7 +96,7 @@ const Photo = () => {
         bannerbtn="Discover more"
       />
 
-      <div className="bg-gray-100 px-6 md:px-10 py-12 min-h-screen mt-24">
+      <div className="bg-gray-100 px-6 md:px-10 py-12 min-h-screen mt-24 mb-20">
         <h2 className="text-xl lg:text-4xl sm:text-3xl font-semibold mb-10 text-navcolor text-center">
           Enseignement Middle School Photo Gallery
         </h2>

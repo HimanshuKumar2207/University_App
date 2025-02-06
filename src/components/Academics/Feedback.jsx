@@ -31,7 +31,7 @@ const Feedback = () => {
         bannerImg={img}
         bannerbtn="Discover more"
       />
-      <div className="bg-gray-100 p-6 sm:p-10 mt-6 lg:mb-20">
+      <div className="bg-gray-100 p-6 sm:p-10 mt-6 lg:mb-20 mb-20">
         <div className="container mx-auto">
           {/* Title Section */}
           <h2 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-10 text-center lg:text-left lg:ml-6 ">

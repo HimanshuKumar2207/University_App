@@ -89,7 +89,7 @@ const Video = () => {
         bannerImg={img}
         bannerbtn="Discover more"
       />
-      <div className="bg-gray-100 p-10 min-h-screen mt-24">
+      <div className="bg-gray-100 p-10 min-h-screen mt-24 mb-20">
         <h2 className="text-xl lg:text-4xl sm:text-3xl font-semibold mb-10 text-navcolor text-center">
           Enseignement Middle School Video Gallery
         </h2>

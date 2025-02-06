@@ -115,87 +115,85 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="hidden lg:block ">
-        <section className="w-full fixed top-10 z-10 flex justify-around items-center ">
-          <nav className="w-[85vw] bg-gray-200 backdrop-blur-md shadow-xl flex items-center justify-between px-5 py-4 rounded-md ">
-            {/* Logo */}
-            <Link
-              to="/Home"
-              className="hidden lg:block md:block"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            >
-              <div className="flex items-center">
-                <FaBookReader className="text-4xl text-navcolor" />
-                <div className="ml-3">
-                  <h2 className="text-2xl text-navcolor font-semibold">
-                    Enseignement
-                  </h2>
-                  <h5 className="text-sm text-gray-900 font-semibold">
-                    Middle School
-                  </h5>
-                </div>
+      <section className="hidden lg:block w-full fixed top-10 z-10 flex lg:ml-[6vw] items-center justify-around ">
+        <nav className="w-[85vw] bg-gray-200 backdrop-blur-md shadow-xl flex items-center justify-between px-5 py-4 rounded-md  ">
+          {/* Logo */}
+          <Link
+            to="/Home"
+            className="sm:hidden lg:block"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <div className="flex items-center md: ">
+              <FaBookReader className="text-4xl text-navcolor" />
+              <div className="ml-3">
+                <h2 className="text-2xl text-navcolor font-semibold">
+                  Enseignement
+                </h2>
+                <h5 className="text-sm text-gray-900 font-semibold">
+                  Middle School
+                </h5>
               </div>
-            </Link>
-
-            {/* Navigation Links */}
-            <div className="flex gap-6 text-lg">
-              {Pages.map((page, index) => (
-                <div key={index} className="relative dropdown-container">
-                  {/* Main Navigation Link */}
-                  <NavLink
-                    to={page.pathName}
-                    className={({ isActive }) =>
-                      `text-navcolor font-semibold px-3 py-2 rounded-md flex items-center gap-1 transition-all duration-300 ${
-                        isActive
-                          ? "bg-navcolor text-white shadow-lg"
-                          : "hover:text-navcolor"
-                      }`
-                    }
-                    onClick={(e) => {
-                      if (page.dropdown) {
-                        e.preventDefault();
-                        setDropdown(dropdown === page.name ? null : page.name);
-                      } else {
-                        setDropdown(null);
-                      }
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
-                    aria-label={`Navigate to ${page.name}`}
-                    aria-expanded={dropdown === page.name}
-                  >
-                    {page.name}{" "}
-                    {page.dropdown && <FaChevronDown className="text-sm" />}
-                  </NavLink>
-
-                  {/* Dropdown Menu */}
-                  {dropdown === page.name && page.dropdown && (
-                    <div className="absolute top-full left-0 mt-2 w-52 bg-white shadow-md rounded-md z-20 transition-all duration-300">
-                      {page.dropdown.map((item, subIndex) => (
-                        <NavLink
-                          key={subIndex}
-                          to={item.pathName}
-                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-all duration-200"
-                          onClick={() => setDropdown(null)}
-                        >
-                          {item.name}
-                        </NavLink>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
             </div>
+          </Link>
 
-            {/* Apply Button */}
-            <button
-              onClick={toggleForm}
-              className="px-6 py-3 bg-navcolor text-white rounded-md hover:bg-navcolor-dark"
-            >
-              Apply
-            </button>
-          </nav>
-        </section>
-      </div>
+          {/* Navigation Links */}
+          <div className="flex gap-6 lg:text-lg">
+            {Pages.map((page, index) => (
+              <div key={index} className="relative dropdown-container">
+                {/* Main Navigation Link */}
+                <NavLink
+                  to={page.pathName}
+                  className={({ isActive }) =>
+                    `text-navcolor font-semibold px-3 py-2 rounded-md flex items-center  gap-1 transition-all duration-300 ${
+                      isActive
+                        ? "bg-navcolor text-white shadow-lg "
+                        : "hover:text-navcolor"
+                    }`
+                  }
+                  onClick={(e) => {
+                    if (page.dropdown) {
+                      e.preventDefault();
+                      setDropdown(dropdown === page.name ? null : page.name);
+                    } else {
+                      setDropdown(null);
+                    }
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  aria-label={`Navigate to ${page.name}`}
+                  aria-expanded={dropdown === page.name}
+                >
+                  {page.name}{" "}
+                  {page.dropdown && <FaChevronDown className="text-sm" />}
+                </NavLink>
+
+                {/* Dropdown Menu */}
+                {dropdown === page.name && page.dropdown && (
+                  <div className="absolute top-full left-0 mt-2 w-52 bg-white shadow-md rounded-md z-20 transition-all duration-300">
+                    {page.dropdown.map((item, subIndex) => (
+                      <NavLink
+                        key={subIndex}
+                        to={item.pathName}
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-all duration-200"
+                        onClick={() => setDropdown(null)}
+                      >
+                        {item.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Apply Button */}
+          <button
+            onClick={toggleForm}
+            className="px-6 py-3 bg-navcolor text-white rounded-md hover:bg-navcolor-dark hidden lg:block md:block sm:block"
+          >
+            Apply
+          </button>
+        </nav>
+      </section>
 
       {/* Application Form Pop-up */}
       <form ref={form} onSubmit={sendEmail}>

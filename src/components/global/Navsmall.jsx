@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaBookReader, FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 
@@ -41,7 +41,7 @@ const Pages = [
 const Navsmall = () => {
   const [dropdown, setDropdown] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for toggling mobile menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); //
 
   const [formData, setFormData] = useState({
     name: "",
@@ -94,108 +94,157 @@ const Navsmall = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const isClickedInsideDropdown = dropdownRef.current.some(
+        (ref) => ref && ref.contains(event.target)
+      );
+      if (!isClickedInsideDropdown) {
+        setDropdown(null);
+      }
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_k5zgpql", // Service ID
+        "template_wz9yd37", // Template ID
+        form.current,
+        "rq17KEfytUz84NGBE" // User ID
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("Application sent successfully!");
+        },
+        (error) => {
+          console.log(error.text);
+          alert("There was an error. Please try again.");
+        }
+      );
+  };
+
   return (
     <>
-      <div className="lg:hidden">
-        <section className="w-full fixed top-5 z-10 flex justify-around items-center">
-          <nav className="w-[85vw] bg-gray-200 backdrop-blur-md shadow-xl flex items-center justify-between px-5 py-4 rounded-t-md">
-            {/* Logo */}
-            <Link
-              to="/Home"
-              className="hidden lg:block md:block"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            >
-              <div className="flex items-center">
-                <FaBookReader className="text-4xl text-navcolor" />
-                <div className="ml-3">
-                  <h2 className="text-2xl text-navcolor font-semibold">
-                    Enseignement
-                  </h2>
-                  <h5 className="text-sm text-gray-900 font-semibold">
-                    Middle School
-                  </h5>
-                </div>
+      <section className="lg:hidden w-full fixed top-5 z-10 flex justify-around items-center">
+        <nav className="w-[85vw]  bg-gray-200 backdrop-blur-md shadow-xl flex items-center justify-between px-5 py-4 rounded-t-md">
+          {/* Logo */}
+          <Link
+            to="/Home"
+            className="hidden lg:block "
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            <div className="flex items-center">
+              <FaBookReader className="text-4xl text-navcolor" />
+              <div className="ml-3">
+                <h2 className="text-2xl text-navcolor font-semibold">
+                  Enseignement
+                </h2>
+                <h5 className="text-sm text-gray-900 font-semibold">
+                  Middle School
+                </h5>
               </div>
-            </Link>
-
-            {/* Hamburger Menu for mobile */}
-            <div className="lg:hidden md:hidden flex items-center">
-              <button
-                onClick={toggleMobileMenu}
-                className="text-3xl text-navcolor"
-                aria-label="Toggle Menu"
-              >
-                {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
-              </button>
             </div>
+          </Link>
 
-            {/* Navigation Links */}
-            <div
-              className={`lg:flex md:flex gap-6 text-lg ${
-                isMobileMenuOpen
-                  ? "flex-col absolute top-full left-0 bg-gray-200 p-5 w-full z-20"
-                  : "hidden"
-              }`}
-            >
-              {Pages.map((page, index) => (
-                <div key={index} className="relative dropdown-container">
-                  {/* Main Navigation Link */}
-                  <NavLink
-                    to={page.pathName}
-                    className={({ isActive }) =>
-                      `text-navcolor font-semibold px-3 py-2 rounded-md flex items-center gap-1 transition-all duration-300 ${
-                        isActive
-                          ? "bg-navcolor text-white shadow-lg"
-                          : "hover:text-navcolor"
-                      }`
-                    }
-                    onClick={(e) => {
-                      if (page.dropdown) {
-                        e.preventDefault();
-                        setDropdown(dropdown === page.name ? null : page.name);
-                      } else {
-                        setDropdown(null);
-                      }
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
-                    aria-label={`Navigate to ${page.name}`}
-                    aria-expanded={dropdown === page.name}
-                  >
-                    {page.name}{" "}
-                    {page.dropdown && <FaChevronDown className="text-sm" />}
-                  </NavLink>
-
-                  {/* Dropdown Menu */}
-                  {dropdown === page.name && page.dropdown && (
-                    <div className="absolute top-full left-0 mt-2 w-52 bg-white shadow-md rounded-md z-20 transition-all duration-300">
-                      {page.dropdown.map((item, subIndex) => (
-                        <NavLink
-                          key={subIndex}
-                          to={item.pathName}
-                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-all duration-200"
-                          onClick={() => setDropdown(null)}
-                        >
-                          {item.name}
-                        </NavLink>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+          {/* Hamburger Menu for mobile */}
+          <div className="lg:hidden md:hidden flex items-center">
             <button
-              onClick={toggleForm}
-              className="px-6 py-3 bg-navcolor text-white rounded-md hover:bg-navcolor-dark"
+              onClick={toggleMobileMenu}
+              className="text-3xl text-navcolor"
+              aria-label="Toggle Menu"
             >
-              Apply
+              {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
-          </nav>
-        </section>
-      </div>
+          </div>
 
+          {/* Navigation Links */}
+          <div
+            className={`lg:flex md:flex gap-6 text-lg ${
+              isMobileMenuOpen
+                ? "flex-col absolute top-full left-0 bg-gray-200 px-1 py-0 w-full z-20"
+                : "hidden"
+            }`}
+          >
+            {Pages.map((page, index) => (
+              <div key={index} className="relative dropdown-container">
+                <NavLink
+                  to={page.pathName}
+                  className={({ isActive }) =>
+                    `text-navcolor font-semibold px-3 py-1 rounded-md flex items-center gap-1 transition-all duration-300 ${
+                      isActive
+                        ? "bg-navcolor text-white shadow-lg"
+                        : "hover:text-navcolor"
+                    }`
+                  }
+                  onClick={(e) => {
+                    if (page.dropdown) {
+                      e.preventDefault();
+                      setDropdown(dropdown === page.name ? null : page.name);
+                    } else {
+                      setDropdown(null);
+                    }
+                    if (page.name == Academics || Admission || Campus) {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
+                  aria-label={`Navigate to ${page.name}`}
+                  aria-expanded={dropdown === page.name}
+                >
+                  {page.name}{" "}
+                  {page.dropdown && <FaChevronDown className="text-sm " />}
+                </NavLink>
+
+                {/* Dropdown Menu */}
+                {dropdown === page.name && page.dropdown && (
+                  <div className="absolute top-full left-0 mt-1 w-auto text-md bg-navcolor shadow-xl rounded-md z-20 transition-all duration-300 ">
+                    {page.dropdown.map((item, subIndex) => (
+                      <NavLink
+                        key={subIndex}
+                        to={item.pathName}
+                        className="block px-4 py-1 text-white  transition-all duration-200"
+                        onClick={() => setDropdown(null)}
+                      >
+                        {item.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={toggleForm}
+            className="px-6 py-3 bg-navcolor text-white rounded-md hover:bg-navcolor-dark"
+          >
+            Apply
+          </button>
+        </nav>
+      </section>
+      {/* <form ref={form} onSubmit={sendEmail}> */}
       {isFormOpen && (
         <div className="fixed inset-0 bg-gray-700 bg-opacity-70 flex justify-center items-center z-20">
-          <div className="bg-white p-10 rounded-lg shadow-2xl w-[90vw] h-[620px] lg:h-auto md:h-auto md:w-auto">
+          <div className="bg-white p-10 rounded-lg shadow-2xl w-[85vw] h-[620px] lg:h-auto md:h-auto md:w-auto">
             {/* Close Button */}
             <button
               onClick={closeForm}
@@ -332,7 +381,7 @@ const Navsmall = () => {
               </div>
 
               {/* Gender Field */}
-              <div className="mb-4">
+              <div className="mb-4 ">
                 <label
                   htmlFor="gender"
                   className="block text-lg font-semibold text-gray-700"
@@ -389,10 +438,10 @@ const Navsmall = () => {
           </div>
         </div>
       )}
-
       {isFormOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-10" />
       )}
+      {/* </form> */}
     </>
   );
 };

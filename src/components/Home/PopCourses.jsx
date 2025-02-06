@@ -39,7 +39,7 @@ const PopCourses = () => {
   return (
     <div className="mt-24 sm:mt-20">
       {/* Section Header */}
-      <div className="topic flex items-center justify-around flex-col mb-5">
+      <div className="topic flex items-center justify-around flex-col  mb-5">
         <p className="h-1 bg-navcolor w-[100px] my-2"></p>
         <h2 className="md:text-5xl sm:text-4xl lg:text-5xl text-3xl font-semibold text-center">
           Popular Courses
@@ -47,12 +47,12 @@ const PopCourses = () => {
       </div>
 
       {/* Cards Container */}
-      <div className="flex flex-col md:flex-row lg:flex-row justify-center items-center md:px-[180px] lg:px-[180px] md:mt-14 lg:mt-10 sm:px-6">
+      <div className="flex flex-col md:flex-col lg:flex-row justify-center items-center lg:px-[180px] md:mt-14 lg:mt-10 sm:px-6">
         {/* Loop through courses and render each card */}
         {courses.map((course) => (
           <div
             key={course.id}
-            className="card w-[85%] sm:w-[90%] md:w-[350px] lg:w-[350px] bg-gray-100 shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out mx-auto my-5"
+            className="card w-[85%] sm:w-[90%] md:w-[85vw] lg:w-[350px] bg-gray-100 shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out mx-auto my-5"
           >
             {/* Course Image */}
             <div className="image">

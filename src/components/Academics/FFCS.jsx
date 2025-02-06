@@ -32,7 +32,7 @@ const FFCS = () => {
         <div className="flex flex-col sm:flex-col lg:flex-row justify-evenly items-center sm:items-start">
           {/* Text Section */}
           <div className=" lg:w-1/2 w-full sm:w-[95vw] leading-relaxed text-gray-900">
-            <p className="text-sm lg:text-lg sm:text-md px-4 sm:px-5 mb-6">
+            <p className="text-md lg:text-lg sm:text-md px-4 sm:px-5 mb-6">
               In the continuous pursuit of academic excellence and creating a
               student-friendly learning environment, VIT introduced the Fully
               Flexible Credit System (Shortly referred to as FFCS). FFCS is a
@@ -41,19 +41,13 @@ const FFCS = () => {
               of the entire student community. With this system, a student can
               prepare his/her own timetable with the specific courses he/she
               intends to do in that semester along with the timings of classes
-              and choice of professors. Learning has never been this fun.
-              Students have the flexibility to pursue their other interests in
-              sports or club activities, and scheduling of classes will take it
-              along the way.
+              and choice of professors. 
             </p>
-            <p className="text-sm lg:text-lg sm:text-md px-4 sm:px-5">
+            <p className="text-md lg:text-lg sm:text-md px-4 sm:px-5">
               It is a beneficial system that is tailor-made to suit all the
               kinds of students with all learning needs, whether someone wishes
               to complete subjects early or pursue subjects of the other
-              branches for acquiring a Minor/Honours degree. In addition, this
-              system ensures offerings of subjects from all disciplines,
-              encouraging students to pursue multiple interests and develop
-              holistically.
+              branches for acquiring a Minor/Honours degree.
             </p>
           </div>
 
@@ -79,8 +73,8 @@ const FFCS = () => {
           </div>
 
           {/* Salient Features Section */}
-          <div className="bg-navcolor mx-auto p-6 sm:p-8 lg:px-20 lg:py-10 rounded-lg sm:ml-[20px] lg:ml-[400px] mt-8 lg:mt-0 lg:w-[1100px] lg:mb-20 ">
-            <div className="heading text-center lg:text-left">
+          <div className="bg-navcolor mx-auto p-6 sm:p-8 lg:px-20 lg:py-10 rounded-lg sm:ml-[20px] lg:ml-[400px] mt-8 lg:mt-0 lg:w-[1100px] lg:mb-20 mb-20 ">
+            <div className="heading text-center lg:text-left ">
               <h2 className="text-2xl sm:text-3xl text-white font-semibold mb-5 lg:ml-[140px]">
                 Salient Features
               </h2>
@@ -89,10 +83,10 @@ const FFCS = () => {
             {salientFeatures.map((feature, index) => (
               <div
                 key={index}
-                className="flex items-center gap-4 mb-3 lg:ml-[140px] justify-center lg:justify-start"
+                className="flex items-center md:justify-start gap-4 mb-3 lg:ml-[140px] justify-center lg:justify-start md:text-left"
               >
                 <FaUserGraduate className="text-xl text-white" />
-                <p className="text-lg sm:text-xl font-semibold text-white md:text-left">
+                <p className="text-lg sm:text-xl font-semibold text-white  md:text-">
                   {feature}
                 </p>
               </div>

@@ -342,17 +342,19 @@ const postgraduateCourses = [
 
 const PostgraduateCourses = () => {
   const [openCategory, setOpenCategory] = useState(null);
-  const [openCourse, setOpenCourse] = useState(null);
+  const [openCourses, setOpenCourses] = useState({});
 
   const toggleCategory = (category) => {
     setOpenCategory(openCategory === category ? null : category);
-    setOpenCourse(null);
+    setOpenCourses((prev) => ({ ...prev, [category]: null }));
   };
 
-  const toggleCourse = (course) => {
-    setOpenCourse(openCourse === course ? null : course);
+  const toggleCourse = (category, course) => {
+    setOpenCourses((prev) => ({
+      ...prev,
+      [category]: prev[category] === course ? null : course,
+    }));
   };
-
   return (
     <>
       <Hero
@@ -361,12 +363,12 @@ const PostgraduateCourses = () => {
         bannerImg={img}
         bannerbtn="Discover more"
       />
-      <div className="bg-gray-100 p-10 min-h-screen mt-24 md:mb-20">
+      <div className="bg-gray-100 p-10 min-h-screen mt-24 md:mb-20 mb-20">
         <h2 className="lg:text-4xl lg:text-left text-center text-2xl font-semibold mb-10 text-navcolor lg:ml-24">
           Postgraduate Courses
         </h2>
 
-        <div className="max-w-6xl space-y-2 grid grid-cols-1  gap-8">
+        <div className="max-w-6xl space-y-2 grid grid-cols-1 gap-8">
           {postgraduateCourses.map((category, index) => (
             <div
               key={index}

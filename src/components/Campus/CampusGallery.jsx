@@ -55,12 +55,12 @@ const CampusGallery = () => {
         bannerbtn="Discover more"
       />
 
-      <div className="bg-gray-100 py-10 px-6 sm:px-10 min-h-screen mt-20">
+      <div className="bg-gray-100 py-10 px-6 sm:px-10 min-h-screen mt-20 mb-20 ">
         <h2 className="text-xl sm:text-3xl lg:text-4xl font-semibold mb-16 text-center text-navcolor">
           College Campus Gallery
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
           {campusImages.map((image, index) => (
             <div
               key={index}

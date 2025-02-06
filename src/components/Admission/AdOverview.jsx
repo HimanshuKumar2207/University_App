@@ -107,7 +107,7 @@ const AdOverview = () => {
         </div>
       </div>
 
-      <div className="bg-gray-100 py-12 mt-16 md:mb-20">
+      <div className="bg-gray-100 py-12 mt-16 md:mb-20 mb-20">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-navcolor mb-8">
             Contact Information
