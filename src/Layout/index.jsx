@@ -26,7 +26,6 @@ import Hostel from "../components/Campus/Hostel";
 import CampusGallery from "../components/Campus/CampusGallery";
 import Video from "../components/Campus/Video";
 import FixedBottom from "../components/global/FixedBottom";
-import ErrorPage from "../Pages/ErrorPage";
 
 const Index = () => {
   return (
@@ -37,7 +36,6 @@ const Index = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/Events" element={<Events />} />
-        <Route path="/admission" element={<Admission />} />
         <Route path="/Academics/overview" element={<Overview />} />
         <Route path="/Academics/Council" element={<Council />} />
         <Route path="/Academics/FFCS" element={<FFCS />} />
@@ -46,12 +44,11 @@ const Index = () => {
         <Route path="/Admission/AdOverview" element={<AdOverview />} />
         <Route path="/Admission/Undergraduate" element={<Undergraduate />} />
         <Route path="/Admission/Postgraduate" element={<Postgraduate />} />
-        <Route path="/Campus" element={<Campus />} />
         <Route path="/Campus/Photo" element={<Photo />} />
         <Route path="/Campus/Video" element={<Video />} />
         <Route path="/Campus/CampusGallery" element={<CampusGallery />} />
         <Route path="/Campus/Hostel" element={<Hostel />} />/
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
       </Routes>
       <Footer />
       <FixedBottom />
