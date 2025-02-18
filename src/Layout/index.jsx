@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "../Pages/Home";
 import About from "../Pages/About";
 import Academics from "../Pages/Academics";
@@ -25,12 +20,11 @@ import Photo from "../components/Campus/Photo";
 import Hostel from "../components/Campus/Hostel";
 import CampusGallery from "../components/Campus/CampusGallery";
 import Video from "../components/Campus/Video";
-import FixedBottom from "../components/global/FixedBottom";
 import ErrorPage from "../Pages/ErrorPage";
 
 const Layout = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -53,8 +47,7 @@ const Layout = () => {
         <Route path="/ErrorPage" element={<ErrorPage />} />/
       </Routes>
       <Footer />
-      <FixedBottom />
-    </Router>
+    </BrowserRouter>
   );
 };
 
