@@ -26,8 +26,9 @@ import Hostel from "../components/Campus/Hostel";
 import CampusGallery from "../components/Campus/CampusGallery";
 import Video from "../components/Campus/Video";
 import FixedBottom from "../components/global/FixedBottom";
+import ErrorPage from "../Pages/ErrorPage";
 
-const Index = () => {
+const Layout = () => {
   return (
     <Router>
       <NavBar />
@@ -49,6 +50,7 @@ const Index = () => {
         <Route path="/Campus/CampusGallery" element={<CampusGallery />} />
         <Route path="/Campus/Hostel" element={<Hostel />} />/
         <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/ErrorPage" element={<ErrorPage />} />/
       </Routes>
       <Footer />
       <FixedBottom />
@@ -56,4 +58,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Layout;

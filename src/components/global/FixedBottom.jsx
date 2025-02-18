@@ -22,44 +22,32 @@ const FixedBottom = () => {
   };
 
   return (
-    <div className="w-full fixed bottom-0 left-0 right-0 bg-navcolor h-[70px] z-10 ">
-      <div className="flex sm:flex-row gap-5 justify-around items-center">
+    <div className="w-full fixed bottom-20 left-0 flex flex-col gap-5 px-7 z-10 hidden lg:block ">
+      <div className="flex flex-col items-start gap-10">
         {/* Call Button */}
         <button
-          className={`flex items-center text-white gap-1 p-3 rounded-lg transition-all duration-200 ${
-            activeTab === "call" ? "" : ""
+          className={`flex items-center justify-center bg-blue-600 text-white gap-3 py-1 px-1 rounded-full hover:bg-blue-700 transition-all duration-200 ml-1 ${
+            activeTab === "call" ? "ring-4 ring-blue-500" : ""
           }`}
           onClick={() => {
             handleTabClick("call");
             handleCallClick();
           }}
         >
-          <FaPhoneAlt className="text-2xl sm:text-2xl md:text-3xl " />
-          <div>
-            <span className="text-xl lg:text-xl sm:text-base font-medium mr-20">
-              Call
-            </span>
-            <h1 className="text-sm mr-3">+91 7479867857</h1>
-          </div>
+          <FaPhoneAlt className="text-xl" />
         </button>
 
         {/* WhatsApp Button */}
         <button
-          className={`flex items-center gap-2 p-3 rounded-lg text-green-600 transition-all duration-200 ${
-            activeTab === "whatsapp" ? "" : ""
+          className={`flex items-center justify-center bg-green-600 text-white gap-3 py-1 px-1 rounded-full hover:bg-green-700 transition-all duration-200 ${
+            activeTab === "whatsapp" ? "ring-4 ring-green-500" : ""
           }`}
           onClick={() => {
             handleTabClick("whatsapp");
             handleWhatsAppClick();
           }}
         >
-          <FaWhatsapp className="text-2xl sm:text-2xl md:text-3xl " />
-          <div>
-            <span className="text-xl sm:text-base font-medium lg:text-xl mr-20">
-              WhatsApp
-            </span>
-            <h1 className="text-sm mr-5">Chat with Representative</h1>
-          </div>
+          <FaWhatsapp className="text-3xl" />
         </button>
       </div>
     </div>

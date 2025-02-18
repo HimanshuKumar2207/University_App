@@ -341,19 +341,18 @@ const undergraduateCourses = [
 ];
 
 const UndergraduateCourses = () => {
-
   const [openCategory, setOpenCategory] = useState(null);
   const [openCourses, setOpenCourses] = useState({});
 
   const toggleCategory = (category) => {
-    setOpenCategory(openCategory === category ? null : category); 
+    setOpenCategory(openCategory === category ? null : category);
     setOpenCourses((prev) => ({ ...prev, [category]: null }));
   };
 
   const toggleCourse = (category, course) => {
     setOpenCourses((prev) => ({
       ...prev,
-      [category]: prev[category] === course ? null : course, 
+      [category]: prev[category] === course ? null : course,
     }));
   };
 
@@ -366,80 +365,98 @@ const UndergraduateCourses = () => {
         bannerbtn="Discover more"
       />
 
-      <div className="bg-gray-100 p-10 min-h-screen mt-24 md:mb-20 mb-20">
-        <h2 className="lg:text-4xl lg:text-left text-center text-2xl font-semibold mb-10 text-navcolor lg:ml-24">
-          Undergraduate Courses
-        </h2>
+      <div className="bg-gradient-to-r from-gray-50 to-gray-100 py-12 min-h-screen">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+            Undergraduate Courses
+          </h2>
 
-        <div className="max-w-6xl space-y-2 grid grid-cols-1  gap-8">
-          {undergraduateCourses.map((category, index) => (
-            <div
-              key={index}
-              className="w-[85vw] lg:w-[70vw] bg-white rounded-lg shadow-lg overflow-hidden mx-auto"
-            >
-              <img
-                src={category.image}
-                alt={category.category}
-                className="w-full h-[300px] lg:h-[250px] object-cover"
-              />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {undergraduateCourses.map((category, index) => (
               <div
-                className="flex justify-between items-center p-4 cursor-pointer bg-navcolor text-white"
-                onClick={() => toggleCategory(category.category)}
+                key={index}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <h3 className="text-xl font-semibold">{category.category}</h3>
-                {openCategory === category.category ? (
-                  <FaChevronUp />
-                ) : (
-                  <FaChevronDown />
-                )}
-              </div>
+                <div className="relative h-48">
+                  <img
+                    src={category.image}
+                    alt={category.category}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                    <h3 className="text-2xl font-bold text-white text-center">
+                      {category.category}
+                    </h3>
+                  </div>
+                </div>
 
-              {openCategory === category.category && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="p-4 space-y-2"
-                >
-                  {category.courses.map((course, i) => (
-                    <div key={i} className="border-b py-2">
-                      <div
-                        className="flex justify-between items-center cursor-pointer text-lg font-semibold text-navcolor hover:underline"
-                        onClick={() =>
-                          toggleCourse(category.category, course.name)
-                        }
-                      >
-                        {course.name}
-                        {openCourses[category.category] === course.name ? (
-                          <FaChevronUp />
-                        ) : (
-                          <FaChevronDown />
-                        )}
-                      </div>
-                      {openCourses[category.category] === course.name && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="mt-2 text-gray-700"
-                        >
-                          <p>
-                            <strong>Duration:</strong> {course.duration}
-                          </p>
-                          <p>
-                            <strong>Fee:</strong> {course.fee}
-                          </p>
-                          <p>
-                            <strong>Established:</strong> {course.established}
-                          </p>
-                        </motion.div>
-                      )}
-                    </div>
-                  ))}
-                </motion.div>
-              )}
-            </div>
-          ))}
+                <div className="p-6">
+                  <div
+                    className="flex justify-between items-center cursor-pointer"
+                    onClick={() => toggleCategory(category.category)}
+                  >
+                    <span className="text-lg font-semibold text-gray-800">
+                      View Courses
+                    </span>
+                    {openCategory === category.category ? (
+                      <FaChevronUp className="text-gray-600" />
+                    ) : (
+                      <FaChevronDown className="text-gray-600" />
+                    )}
+                  </div>
+
+                  {openCategory === category.category && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="mt-4 space-y-4"
+                    >
+                      {category.courses.map((course, i) => (
+                        <div key={i} className="border-t pt-4">
+                          <div
+                            className="flex justify-between items-center cursor-pointer"
+                            onClick={() =>
+                              toggleCourse(category.category, course.name)
+                            }
+                          >
+                            <span className="text-md font-medium text-gray-700">
+                              {course.name}
+                            </span>
+                            {openCourses[category.category] === course.name ? (
+                              <FaChevronUp className="text-gray-600" />
+                            ) : (
+                              <FaChevronDown className="text-gray-600" />
+                            )}
+                          </div>
+
+                          {openCourses[category.category] === course.name && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="mt-2 text-gray-600"
+                            >
+                              <p>
+                                <strong>Duration:</strong> {course.duration}
+                              </p>
+                              <p>
+                                <strong>Fee:</strong> {course.fee}
+                              </p>
+                              <p>
+                                <strong>Established:</strong>{" "}
+                                {course.established}
+                              </p>
+                            </motion.div>
+                          )}
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

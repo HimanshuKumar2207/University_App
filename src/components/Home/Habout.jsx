@@ -11,7 +11,7 @@ const Habout = () => {
 
   return (
     <>
-      <div className="relative flex flex-col lg:flex-row justify-around items-center px-10 py-10 bg-gray-100 text-white mt-16 rounded-lg overflow-hidden lg:gap-20 lg:px-24 ">
+      <div className="relative flex flex-col lg:flex-row justify-around items-center px-10 py-24 bg-gray-100 text-white mt-0 rounded-lg overflow-hidden lg:gap-20 lg:px-20 ">
         {/* Left Section */}
         <div className="left text-left mb-8">
           <h1 className="text-3xl font-bold text-navcolor leading-tight md:text-4xl lg:text-5xl lg:ml-18 lg:mb-[160px]">
@@ -20,8 +20,7 @@ const Habout = () => {
         </div>
 
         {/* Right Section */}
-        <div className="right lg:w-[100%] lg:mr-10 bg-white shadow-xl rounded-xl p-8 ">
-          
+        <div className="right lg:w-[100%] w-[90vw] lg:mr-10 bg-white shadow-xl rounded-xl p-8 ">
           <p className="text-md text-gray-600 leading-relaxed md:hidden">
             {isExpanded
               ? "At Enlightment Schools, our legacy is built on a foundation of tradition, growth, and an unwavering commitment to excellence. Since our inception, we have been dedicated to fostering a culture where curiosity is celebrated, potential is nurtured, and innovation thrives. With a proud history of shaping bright minds and empowering individuals, Enlightment Schools continues to inspire greatness and lead the way in education. Our mission is rooted in the belief that every student deserves the opportunity to shine, and our journey reflects a passion for preparing future leaders with knowledge, integrity, and purpose."

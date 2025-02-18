@@ -52,7 +52,8 @@ const PopCourses = () => {
         {courses.map((course) => (
           <div
             key={course.id}
-            className="card w-[85%] sm:w-[90%] md:w-[85vw] lg:w-[350px] bg-gray-100 shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out mx-auto my-5"
+            className="card w-[90%] sm:w-[90%] md:w-[90%] lg:w-[350px] bg-gray-100 shadow-lg hover:scale-105 hover:shadow-2xl transition-transform duration-300 ease-in-out mx-auto my-5 flex flex-col justify-between"
+            style={{ height: '500px' }} // Set a fixed height for the cards
           >
             {/* Course Image */}
             <div className="image">
